@@ -42,7 +42,7 @@ object BatchJob {
     val text: DataStream[String] = env.socketTextStream("hadoop100",9999,'\n')
     val windowCounts = text.flatMap{word=>word.split("\\s")}.map{word=>WordWithCount(word,1)}.keyBy("word").timeWindow(Time.seconds(5)).sum("count")
     windowCounts.print().setParallelism(1)
-
+     println("haah")
     env.execute("Flink Streaming Scala API Skeleton")
 
     // execute program
